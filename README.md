@@ -1,132 +1,96 @@
-# MERN Stack Task and Workout Tracker
+# MERN Stack Task Manager
 
-This is a full-stack MERN (MongoDB, Express, React, Node.js) application designed to track daily tasks and workout routines. The project is split into two main modules: a Task Manager and a Workout Logger.
+A full-stack MERN (MongoDB, Express, React, Node.js) application built to track and manage daily tasks with a beautiful, responsive interface. Features robust task CRUD operations, real-time UI state sync, and page routing.
 
-## Table of Contents
+---
 
-- [Project Structure](#project-structure)
-- [Features](#features)
-- [Prerequisites](#prerequisites)
-- [Backend Setup](#backend-setup)
-- [Frontend Setup](#frontend-setup)
-- [API Endpoints](#api-endpoints)
+## 🚀 Live Deployment Links
 
-## Project Structure
+*   **GitHub Repository:** [Sumitchahar317/Task-Manager](https://github.com/Sumitchahar317/Task-Manager)
+*   **Backend Server (Render):** [https://task-manager-duct.onrender.com](https://task-manager-duct.onrender.com)
+*   **Frontend Client (Vercel):** *[Insert your Vercel live URL here]*
 
-The repository is organized into separate folders for the backend and frontend components. It appears there are two distinct frontends and likely two corresponding backends.
+---
 
-```
+## 📁 Project Structure
+
+```text
 Assignment8/
-├── backend-tasks/      # (Assumed) Backend for the Task Manager
-│   ├── ...
-│   └── package.json
-├── backend-workouts/   # (Assumed) Backend for the Workout Logger
-│   ├── ...
-│   └── package.json
-├── client/             # Frontend for the Task Manager
+├── client/             # Frontend React app (Vite)
 │   ├── src/
+│   │   ├── assets/     # Components (Navbar, TaskDetail, NewtaskForm)
+│   │   ├── pages/      # Views (Home, EditPage, EditForm)
+│   │   └── App.jsx
 │   └── package.json
-└── fronted/            # Frontend for the Workout Logger
-    ├── src/
+└── server/             # Backend Express API
+    ├── Controller/     # Request handlers
+    ├── model/          # Mongoose database schemas
+    ├── routes/         # Express API endpoints
+    ├── server.js       # Express server configuration
     └── package.json
 ```
 
-## Features
+---
 
-*   **Task Manager**: Create, read, and update daily tasks.
-*   **Workout Logger**: Log exercises with details like title, weight, and reps.
-*   RESTful API for managing data.
-*   Clean, component-based UI built with React.
+## ✨ Features
 
-## Prerequisites
+*   **Create Tasks:** Add a task with a title, description, and status (Completed/Pending).
+*   **View Tasks:** Real-time display of all tasks with clean status badges.
+*   **Edit Tasks:** Edit existing tasks through a dedicated edit view that pre-populates details and updates the database via `PATCH`.
+*   **Delete Tasks:** Remove tasks with instant, dynamic state updates in the UI (no page refresh required).
+*   **Environment De-coupling**: Configured to work in both local development and live production via environment variables.
 
-Before you begin, ensure you have the following installed on your system:
+---
 
-*   [Node.js](https://nodejs.org/en/) (v14 or later recommended)
-*   [npm](https://www.npmjs.com/) (comes with Node.js)
-*   [MongoDB](https://www.mongodb.com/try/download/community) (or a MongoDB Atlas account)
+## 🛠️ API Endpoints
 
-## Backend Setup
+The backend Express server exposes the following endpoints at `https://task-manager-duct.onrender.com/api/tasks`:
 
-You need to run two separate backend servers for the tasks and workouts functionalities.
+*   `GET /api/tasks` - Get all tasks.
+*   `GET /api/tasks/:id` - Get a single task's details.
+*   `POST /api/tasks` - Create a new task.
+*   `PATCH /api/tasks/:id` - Update an existing task.
+*   `DELETE /api/tasks/:id` - Delete a task.
 
-### 1. Task Manager Backend (Port 8000)
+---
 
-1.  **Navigate to the backend directory:**
-    ```bash
-    cd backend-tasks
-    ```
+## 💻 Local Setup & Installation
 
-2.  **Install dependencies:**
-    ```bash
-    npm install
-    ```
+### 1. Backend Setup (`server`)
+1. Navigate to the server folder:
+   ```bash
+   cd server
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Create a `.env` file inside the `server/` directory and configure your port and MongoDB Atlas database connection string:
+   ```env
+   PORT=8000
+   URL=mongodb+srv://<username>:<password>@cluster0.cbxha5l.mongodb.net/
+   ```
+4. Start the server:
+   ```bash
+   npm start
+   ```
+   *(The server will start at `http://localhost:8000`)*
 
-3.  **Create a `.env` file** in the `backend-tasks` root and add your MongoDB connection string and port:
-    ```env
-    PORT=8000
-    MONGO_URI=your_mongodb_connection_string_for_tasks
-    ```
-
-4.  **Start the server:**
-    ```bash
-    npm start
-    ```
-    The server will be running at `http://localhost:8000`.
-
-### 2. Workout Logger Backend (Port 8080)
-
-Follow the same steps for the workout backend in its respective directory (`backend-workouts`).
-
-1.  **Navigate, install dependencies, and create a `.env` file** with the following content:
-    ```env
-    PORT=8080
-    MONGO_URI=your_mongodb_connection_string_for_workouts
-    ```
-
-2.  **Start the server:**
-    ```bash
-    npm start
-    ```
-    The server will be running at `http://localhost:8080`.
-
-## Frontend Setup
-
-You will also need to run the two React frontend applications separately.
-
-### 1. Task Manager UI (`client`)
-
-In a new terminal, navigate to the `client` directory, install dependencies, and start the development server.
-
-```bash
-cd client
-npm install
-npm start
-```
-The Task Manager UI will be available at `http://localhost:3000` (or the next available port).
-
-### 2. Workout Logger UI (`fronted`)
-
-In another terminal, navigate to the `fronted` directory.
-
-```bash
-cd fronted
-npm install
-npm start
-```
-The Workout Logger UI will be available at `http://localhost:3001` (or another port).
-
-## API Endpoints
-
-The application uses the following API endpoints:
-
-### Tasks API
-
-*   `GET /api/tasks/`: Fetches all tasks.
-*   `POST /api/tasks/`: Creates a new task.
-
-### Workouts API
-
-*   `GET /api/workouts`: Fetches all workouts.
-*   `POST /api/workouts`: Creates a new workout.
-*   `DELETE /api/workouts/:id`: Deletes a specific workout.
+### 2. Frontend Setup (`client`)
+1. In a separate terminal, navigate to the client folder:
+   ```bash
+   cd client
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Create a `.env` file inside the `client/` directory for local development:
+   ```env
+   VITE_API_URL=http://localhost:8000
+   ```
+4. Start the development environment:
+   ```bash
+   npm run dev
+   ```
+   *(Open `http://localhost:5173` or the port displayed in your terminal)*
