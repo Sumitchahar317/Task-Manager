@@ -2,6 +2,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
+
 const EditForm = ({data}) => {
     const [title, setTitle] = useState(data.title);
     const [description, setDescription] = useState(data.description);
@@ -13,7 +15,7 @@ const EditForm = ({data}) => {
         e.preventDefault();
 
         try {
-            const res = await fetch(`http://localhost:8000/api/tasks/${data._id}`, {
+            const res = await fetch(`${API_URL}/api/tasks/${data._id}`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json"

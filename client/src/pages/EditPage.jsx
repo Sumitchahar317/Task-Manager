@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import EditForm from "./EditForm";
 
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
+
 const EditPage = () => {
     const [data , setData] = useState(null);
     const {id} = useParams();
@@ -10,7 +12,7 @@ const EditPage = () => {
     useEffect(()=>{
     const fetchData = async()=>{  
         try{ 
-        const res = await fetch(`http://localhost:8000/api/tasks/${id}`) ;
+        const res = await fetch(`${API_URL}/api/tasks/${id}`) ;
         const json = await res.json();
 
         setData(json);

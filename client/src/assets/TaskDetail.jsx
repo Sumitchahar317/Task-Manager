@@ -1,10 +1,12 @@
 import { Link } from 'react-router-dom'
 
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
+
 const TaskDetail = ({ task, onTaskDeleted }) => {
 
 const delButton = async()=>{
     try {
-        const res = await fetch(`http://localhost:8000/api/tasks/${task._id}` , {
+        const res = await fetch(`${API_URL}/api/tasks/${task._id}` , {
             method : "delete",
         });
         

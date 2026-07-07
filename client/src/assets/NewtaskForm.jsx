@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
+
 const NewtaskForm = () => {
     const [title, setTitle] = useState(null);
     const [description, setDescription] = useState(null);
@@ -12,7 +14,7 @@ const NewtaskForm = () => {
         e.preventDefault();
 
         try {
-            const res = await fetch("http://localhost:8000/api/tasks/", {
+            const res = await fetch(`${API_URL}/api/tasks/`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

@@ -3,6 +3,8 @@ import './Home.css';
 import TaskDetail from '../assets/TaskDetail';
 import { Link } from 'react-router-dom';
 
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
+
 const Home = () => {
   const [tasks, setTasks] = useState(null);
   const [error, setError] = useState(null);
@@ -10,7 +12,7 @@ const Home = () => {
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const response = await fetch("http://localhost:8000/api/tasks/");
+        const response = await fetch(`${API_URL}/api/tasks/`);
         const json = await response.json();
 
         if (response.ok) setTasks(json);
