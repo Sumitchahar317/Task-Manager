@@ -1,7 +1,7 @@
 import './App.css'
 import Navbar from './assets/Navbar';
 import NewtaskForm from './assets/NewtaskForm';
-import EditPage from '../pages/EditPage';
+import EditPage from './pages/EditPage';
 import Home from './pages/Home'
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
